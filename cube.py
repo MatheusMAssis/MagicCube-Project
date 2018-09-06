@@ -61,7 +61,6 @@ class cube:
     
     def move(self, movement):
         
-        
     #--- up ---#
     
         #clock
@@ -210,13 +209,76 @@ class cube:
         
         #clock
         elif movement == "F":
-            ...
+            
+            #front
+            aux1, aux2 = self.state[6], self.state[7]
+            self.state[6], self.state[7] = self.state[14], aux1
+            self.state[14], self.state[15] = self.state[15], aux2
+            
+            #horizontal
+            aux_list = [self.state[2], self.state[3],
+                        self.state[8], self.state[16],
+                        self.state[20], self.state[21],
+                        self.state[5], self.state[13]]
+            [aux1, aux2] = aux_list[6:8][-1::-1]
+            aux_list[6:8] = aux_list[4:6]
+            aux_list[4:6] = aux_list[2:4][-1::-1]
+            aux_list[2:4] = aux_list[0:2]
+            aux_list[0:2] = [aux1, aux2]
+            [self.state[2], self.state[3],
+             self.state[8], self.state[16],
+             self.state[20], self.state[21],
+             self.state[5], self.state[13]] = aux_list
+            
         #anticlock    
         elif movement == "F'":
-            ...
+            
+            #front
+            aux1, aux2 = self.state[6], self.state[14]
+            self.state[6], self.state[7] = self.state[7], self.state[15]
+            self.state[14], self.state[15] = aux1, aux2
+            
+            #horizontal
+            aux_list = [self.state[2], self.state[3],
+                        self.state[8], self.state[16],
+                        self.state[20], self.state[21],
+                        self.state[5], self.state[13]]
+            [aux1, aux2] = aux_list[0:2][-1::-1]
+            aux_list[0:2] = aux_list[2:4]
+            aux_list[2:4] = aux_list[4:6][-1::-1]
+            aux_list[4:6] = aux_list[6:8]
+            aux_list[6:8] = [aux1, aux2]
+            [self.state[2], self.state[3],
+             self.state[8], self.state[16],
+             self.state[20], self.state[21],
+             self.state[5], self.state[13]] = aux_list
+             
+    #--- back ---#
+    
         #clock
         elif movement == "B":
-            ...
+            
+            #back
+            aux1, aux2 = self.state[10], self.state[11]
+            self.state[10], self.state[11] = self.state[18], aux1
+            self.state[18], self.state[19] = self.state[19], aux2
+            
+            #horizontal
+            aux_list = [self.state[0], self.state[1],
+                        self.state[4], self.state[12],
+                        self.state[22], self.state[23],
+                        self.state[9], self.state[17]]
+            [aux1, aux2] = aux_list[6:8]
+            aux_list[6:8] = aux_list[4:6][-1::-1]
+            aux_list[4:6] = aux_list[2:4]
+            aux_list[2:4] = aux_list[0:2][-1::-1]
+            aux_list[0:2] = [aux1, aux2]
+            [self.state[0], self.state[1],
+             self.state[4], self.state[12],
+             self.state[22], self.state[23],
+             self.state[9], self.state[17]] = aux_list
+            
+            
         #anticlock    
         elif movement == "B'":
             ...
