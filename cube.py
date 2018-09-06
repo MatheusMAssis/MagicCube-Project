@@ -55,18 +55,12 @@ class cube:
                 color = change(self.state[i])
                 down.append(color)
         
-        print('up    :', up[:2])
-        print('       ', up[2:])
-        print('down  :', down[:2])
-        print('       ', down[2:])
-        print('front :', front[:2])
-        print('       ', front[2:])
-        print('back  :', back[:2])
-        print('       ', back[2:])
-        print('right :', right[:2])
-        print('       ', right[2:])
-        print('left  :', left[:2])
-        print('       ', left[2:])
+        print('up    :', up[:2], '\n', '      ', up[2:])
+        print('down  :', down[:2], '\n', '      ', down[2:])
+        print('front :', front[:2], '\n', '      ', front[2:])
+        print('back  :', back[:2], '\n', '      ', back[2:])
+        print('right :', right[:2], '\n', '      ', right[2:])
+        print('left  :', left[:2], '\n', '      ', left[2:])
     
     #--- defining moves in clock or anticlock wise ---#
     
@@ -125,8 +119,7 @@ class cube:
             self.state[12:18] = self.state[14:20]
             self.state[18:20] = [aux1, aux2]
          
-    #--- right ---#
-    ''' WRONG '''
+    #--- right ---#  W R O N G
         elif movement == 'r' and direction == 'c':
             
             #right
