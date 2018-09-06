@@ -1,8 +1,3 @@
-''' Rubiks Cube solver
-
-
-
-'''
 import numpy as np
 
 #--- auxiliar function ---#
@@ -64,12 +59,13 @@ class cube:
     
     #--- defining moves in clock or anticlock wise ---#
     
-    def move(self, movement, direction):
+    def move(self, movement):
         
         
     #--- up ---#
+    
         #clock
-        if movement == 'u' and direction == 'c':
+        if movement == "U":
             
             #up
             aux1, aux2 = self.state[0], self.state[1]
@@ -82,7 +78,7 @@ class cube:
             self.state[10:12] = [aux1, aux2]
         
         #anticlock
-        elif movement == 'u' and direction == 'ac':
+        elif movement == "U'":
                 
             #up
             aux1, aux2 = self.state[0], self.state[2]
@@ -95,7 +91,9 @@ class cube:
             self.state[4:6] =  [aux1, aux2]
         
     #--- down ---#
-        elif movement == 'd' and direction == 'c':
+    
+        #clock
+        elif movement == "D":
             
             #down
             aux1, aux2 = self.state[20], self.state[21]
@@ -106,8 +104,9 @@ class cube:
             [aux1, aux2] = self.state[18:20]
             self.state[14:20] = self.state[12:18]
             self.state[12:14] =  [aux1, aux2]
-            
-        elif movement == 'd' and direction == 'ac':
+        
+        #anticlock
+        elif movement == "D'":
             
             #down
             aux1, aux2 = self.state[20], self.state[22]
@@ -120,7 +119,9 @@ class cube:
             self.state[18:20] = [aux1, aux2]
          
     #--- right ---#
-        elif movement == 'r' and direction == 'c':
+    
+        #clock
+        elif movement == "R":
             
             #right
             aux1, aux2 = self.state[8], self.state[9]
@@ -134,13 +135,14 @@ class cube:
                         self.state[18], self.state[10]]
             [aux1, aux2] = aux_list[0:2]
             aux_list[0:6] = aux_list[2:8]
-            aux_list[6:8] = [aux2, aux1]
+            aux_list[6:8] = [aux1, aux2]
             [self.state[1], self.state[3],
              self.state[7], self.state[15],
              self.state[21], self.state[23],
              self.state[18], self.state[10]] = aux_list
-            
-        elif movement == 'r' and direction == 'ac':
+        
+        #anticlock
+        elif movement == "R'":
             
             #right
             aux1, aux2 = self.state[8], self.state[16]
@@ -154,27 +156,67 @@ class cube:
                         self.state[18], self.state[10]]
             [aux1, aux2] = aux_list[6:8]
             aux_list[2:8] = aux_list[0:6]
-            aux_list[0:2] = [aux2, aux1]
+            aux_list[0:2] = [aux1, aux2]
             [self.state[1], self.state[3],
              self.state[7], self.state[15],
              self.state[21], self.state[23],
              self.state[18], self.state[10]] = aux_list
             
+    #--- left ---#
+    
+        #clock    
+        elif movement == "L":
             
-        elif movement == 'l' and direction == 'c':
+            #left
+            aux1, aux2 = self.state[4], self.state[5]
+            self.state[4], self.state[5] = self.state[12], aux1
+            self.state[12], self.state[13] = self.state[13], aux2
+            
+            #vertical
+            aux_list = [self.state[0], self.state[2],
+                        self.state[6], self.state[14],
+                        self.state[20], self.state[22],
+                        self.state[19], self.state[11]]
+            [aux1, aux2] = aux_list[6:8]
+            aux_list[2:8] = aux_list[0:6]
+            aux_list[0:2] = [aux1, aux2]
+            [self.state[0], self.state[2],
+             self.state[6], self.state[14],
+             self.state[20], self.state[22],
+             self.state[19], self.state[11]] = aux_list
+        
+        #anticlock
+        elif movement == "L'":
+            
+            #left
+            aux1, aux2 = self.state[4], self.state[12]
+            self.state[4], self.state[5] = self.state[5], self.state[13]
+            self.state[12], self.state[13] = aux1, aux2
+            
+            #vertical
+            aux_list = [self.state[0], self.state[2],
+                        self.state[6], self.state[14],
+                        self.state[20], self.state[22],
+                        self.state[19], self.state[11]]
+            [aux1, aux2] = aux_list[0:2]
+            aux_list[0:6] = aux_list[2:8]
+            aux_list[6:8] = [aux1, aux2]
+            [self.state[0], self.state[2],
+             self.state[6], self.state[14],
+             self.state[20], self.state[22],
+             self.state[19], self.state[11]] = aux_list
+         
+    #--- front ---#
+        
+        #clock
+        elif movement == "F":
             ...
-            
-        elif movement == 'l' and direction == 'ac':
+        #anticlock    
+        elif movement == "F'":
             ...
-            
-        elif movement == 'f' and direction == 'c':
+        #clock
+        elif movement == "B":
             ...
-            
-        elif movement == 'f' and direction == 'ac':
-            ...
-            
-        elif movement == 'b' and direction == 'c':
-            ...
-            
-        elif movement == 'b' and direction == 'ac':
+        #anticlock    
+        elif movement == "B'":
             ...
