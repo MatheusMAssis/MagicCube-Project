@@ -1,14 +1,19 @@
+''' Rubiks Cube solver
+
+
+
+'''
 import numpy as np
 
 #--- auxiliar function ---#
 
 def change(n):
-    color_dict = {0: 'white',
-                  1: 'orange',
-                  2: 'green',
-                  3: 'red',
-                  4: 'blue',
-                  5: 'yellow'}
+    color_dict = {0: 'W',
+                  1: 'O',
+                  2: 'G',
+                  3: 'R',
+                  4: 'B',
+                  5: 'Y'}
     return color_dict[n]
 
 #--- cube class (in this case, a 2x2x2) ---#
@@ -50,12 +55,18 @@ class cube:
                 color = change(self.state[i])
                 down.append(color)
         
-        print('up:', up)
-        print('down:', down)
-        print('front:', front)
-        print('back:', back)
-        print('right:', right)
-        print('left:', left)
+        print('up    :', up[:2])
+        print('       ', up[2:])
+        print('down  :', down[:2])
+        print('       ', down[2:])
+        print('front :', front[:2])
+        print('       ', front[2:])
+        print('back  :', back[:2])
+        print('       ', back[2:])
+        print('right :', right[:2])
+        print('       ', right[2:])
+        print('left  :', left[:2])
+        print('       ', left[2:])
     
     #--- defining moves in clock or anticlock wise ---#
     
@@ -113,12 +124,49 @@ class cube:
             [aux1, aux2] = self.state[12:14]
             self.state[12:18] = self.state[14:20]
             self.state[18:20] = [aux1, aux2]
-            
+         
+    #--- right ---#
+    ''' WRONG '''
         elif movement == 'r' and direction == 'c':
-            ...
+            
+            #right
+            aux1, aux2 = self.state[8], self.state[9]
+            self.state[8], self.state[9] = self.state[16], aux1
+            self.state[16], self.state[17] = self.state[17], aux2
+            
+            #vertical
+            aux_list = [self.state[1], self.state[3],
+                        self.state[7], self.state[15],
+                        self.state[21], self.state[23],
+                        self.state[10], self.state[18]]
+            [aux1, aux2] = aux_list[0:2]
+            aux_list[0:6] = aux_list[2:8]
+            aux_list[6:8] = [aux1, aux2]
+            [self.state[1], self.state[3],
+             self.state[7], self.state[15],
+             self.state[21], self.state[23],
+             self.state[10], self.state[18]] = aux_list
             
         elif movement == 'r' and direction == 'ac':
-            ...
+            
+            #right
+            aux1, aux2 = self.state[8], self.state[16]
+            self.state[8], self.state[9] = self.state[9], self.state[17]
+            self.state[16], self.state[17] = aux1, aux2
+            
+            #vertical
+            aux_list = [self.state[1], self.state[3],
+                        self.state[7], self.state[15],
+                        self.state[21], self.state[23],
+                        self.state[10], self.state[18]]
+            [aux1, aux2] = aux_list[6:8]
+            aux_list[2:8] = aux_list[0:6]
+            aux_list[0:2] = [aux2, aux1]
+            [self.state[1], self.state[3],
+             self.state[7], self.state[15],
+             self.state[21], self.state[23],
+             self.state[10], self.state[18]] = aux_list
+            
             
         elif movement == 'l' and direction == 'c':
             ...
