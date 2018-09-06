@@ -119,7 +119,7 @@ class cube:
             self.state[12:18] = self.state[14:20]
             self.state[18:20] = [aux1, aux2]
          
-    #--- right ---#  W R O N G
+    #--- right ---#
         elif movement == 'r' and direction == 'c':
             
             #right
@@ -131,14 +131,14 @@ class cube:
             aux_list = [self.state[1], self.state[3],
                         self.state[7], self.state[15],
                         self.state[21], self.state[23],
-                        self.state[10], self.state[18]]
+                        self.state[18], self.state[10]]
             [aux1, aux2] = aux_list[0:2]
             aux_list[0:6] = aux_list[2:8]
-            aux_list[6:8] = [aux1, aux2]
+            aux_list[6:8] = [aux2, aux1]
             [self.state[1], self.state[3],
              self.state[7], self.state[15],
              self.state[21], self.state[23],
-             self.state[10], self.state[18]] = aux_list
+             self.state[18], self.state[10]] = aux_list
             
         elif movement == 'r' and direction == 'ac':
             
@@ -151,14 +151,14 @@ class cube:
             aux_list = [self.state[1], self.state[3],
                         self.state[7], self.state[15],
                         self.state[21], self.state[23],
-                        self.state[10], self.state[18]]
+                        self.state[18], self.state[10]]
             [aux1, aux2] = aux_list[6:8]
             aux_list[2:8] = aux_list[0:6]
             aux_list[0:2] = [aux2, aux1]
             [self.state[1], self.state[3],
              self.state[7], self.state[15],
              self.state[21], self.state[23],
-             self.state[10], self.state[18]] = aux_list
+             self.state[18], self.state[10]] = aux_list
             
             
         elif movement == 'l' and direction == 'c':
