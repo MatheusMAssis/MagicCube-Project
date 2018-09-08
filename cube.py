@@ -1,4 +1,5 @@
 import numpy as np
+import random as rd
 
 #--- auxiliar function ---#
 
@@ -281,4 +282,37 @@ class cube:
             
         #anticlock    
         elif movement == "B'":
-            ...
+            
+            #back
+            aux1, aux2 = self.state[10], self.state[18]
+            self.state[10], self.state[11] = self.state[11], self.state[19]
+            self.state[18], self.state[19] = aux1, aux2
+            
+            #horizontal
+            aux_list = [self.state[0], self.state[1],
+                        self.state[4], self.state[12],
+                        self.state[22], self.state[23],
+                        self.state[9], self.state[17]]
+            [aux1, aux2] = aux_list[0:2]
+            aux_list[0:2] = aux_list[2:4][-1::-1]
+            aux_list[2:4] = aux_list[4:6]
+            aux_list[4:6] = aux_list[6:8][-1::-1]
+            aux_list[6:8] = [aux1, aux2]
+            [self.state[0], self.state[1],
+             self.state[4], self.state[12],
+             self.state[22], self.state[23],
+             self.state[9], self.state[17]] = aux_list
+             
+        
+    def scramble(self):
+        
+        list_of_movements = np.array(["U", "U'", "D", "D'", "R", "R'", "L", "L'",
+                                      "F", "F'", "B", "B'"])
+        scramble_list = []
+        
+        for i in range(15):
+            mov = rd.choice(list_of_movements)
+            scramble_list.append(mov)
+            self.move(mov)
+        
+        return scramble_list
