@@ -58,7 +58,7 @@ class cube:
         print('right :', right[:2], '\n', '      ', right[2:])
         print('left  :', left[:2], '\n', '      ', left[2:])
     
-    #--- defining moves in clock or anticlock wise ---#
+    #--- defining moves in clock or counterclock wise ---#
     
     def move(self, movement):
         
@@ -77,7 +77,7 @@ class cube:
             self.state[4:10] = self.state[6:12]
             self.state[10:12] = [aux1, aux2]
         
-        #anticlock
+        #counterclock
         elif movement == "U'":
                 
             #up
@@ -105,7 +105,7 @@ class cube:
             self.state[14:20] = self.state[12:18]
             self.state[12:14] =  [aux1, aux2]
         
-        #anticlock
+        #counterclock
         elif movement == "D'":
             
             #down
@@ -141,7 +141,7 @@ class cube:
              self.state[21], self.state[23],
              self.state[18], self.state[10]] = aux_list
         
-        #anticlock
+        #counterclock
         elif movement == "R'":
             
             #right
@@ -185,7 +185,7 @@ class cube:
              self.state[20], self.state[22],
              self.state[19], self.state[11]] = aux_list
         
-        #anticlock
+        #counterclock
         elif movement == "L'":
             
             #left
@@ -231,7 +231,7 @@ class cube:
              self.state[20], self.state[21],
              self.state[5], self.state[13]] = aux_list
             
-        #anticlock    
+        #counterclock    
         elif movement == "F'":
             
             #front
@@ -280,7 +280,7 @@ class cube:
              self.state[9], self.state[17]] = aux_list
             
             
-        #anticlock    
+        #counterclock    
         elif movement == "B'":
             
             #back
@@ -302,15 +302,16 @@ class cube:
              self.state[4], self.state[12],
              self.state[22], self.state[23],
              self.state[9], self.state[17]] = aux_list
-             
+    
+    #--- scrambling the cube up to n movements ---#
         
-    def scramble(self):
+    def scramble(self, n):
         
         list_of_movements = np.array(["U", "U'", "D", "D'", "R", "R'", "L", "L'",
                                       "F", "F'", "B", "B'"])
         scramble_list = []
         
-        for i in range(15):
+        for i in range(n):
             mov = rd.choice(list_of_movements)
             scramble_list.append(mov)
             self.move(mov)
