@@ -65,7 +65,7 @@ class cube:
     #--- up ---#
     
         #clock
-        if movement == "U":
+        if movement == 'U':
             
             #up
             aux1, aux2 = self.state[0], self.state[1]
@@ -78,7 +78,7 @@ class cube:
             self.state[10:12] = [aux1, aux2]
         
         #counterclock
-        elif movement == "U'":
+        elif movement == 'Ui':
                 
             #up
             aux1, aux2 = self.state[0], self.state[2]
@@ -93,7 +93,7 @@ class cube:
     #--- down ---#
     
         #clock
-        elif movement == "D":
+        elif movement == 'D':
             
             #down
             aux1, aux2 = self.state[20], self.state[21]
@@ -106,7 +106,7 @@ class cube:
             self.state[12:14] =  [aux1, aux2]
         
         #counterclock
-        elif movement == "D'":
+        elif movement == 'Di':
             
             #down
             aux1, aux2 = self.state[20], self.state[22]
@@ -121,7 +121,7 @@ class cube:
     #--- right ---#
     
         #clock
-        elif movement == "R":
+        elif movement == 'R':
             
             #right
             aux1, aux2 = self.state[8], self.state[9]
@@ -142,7 +142,7 @@ class cube:
              self.state[18], self.state[10]] = aux_list
         
         #counterclock
-        elif movement == "R'":
+        elif movement == 'Ri':
             
             #right
             aux1, aux2 = self.state[8], self.state[16]
@@ -165,7 +165,7 @@ class cube:
     #--- left ---#
     
         #clock    
-        elif movement == "L":
+        elif movement == 'L':
             
             #left
             aux1, aux2 = self.state[4], self.state[5]
@@ -186,7 +186,7 @@ class cube:
              self.state[19], self.state[11]] = aux_list
         
         #counterclock
-        elif movement == "L'":
+        elif movement == 'Li':
             
             #left
             aux1, aux2 = self.state[4], self.state[12]
@@ -209,7 +209,7 @@ class cube:
     #--- front ---#
         
         #clock
-        elif movement == "F":
+        elif movement == 'F':
             
             #front
             aux1, aux2 = self.state[6], self.state[7]
@@ -232,7 +232,7 @@ class cube:
              self.state[5], self.state[13]] = aux_list
             
         #counterclock    
-        elif movement == "F'":
+        elif movement == 'Fi':
             
             #front
             aux1, aux2 = self.state[6], self.state[14]
@@ -257,7 +257,7 @@ class cube:
     #--- back ---#
     
         #clock
-        elif movement == "B":
+        elif movement == 'B':
             
             #back
             aux1, aux2 = self.state[10], self.state[11]
@@ -281,7 +281,7 @@ class cube:
             
             
         #counterclock    
-        elif movement == "B'":
+        elif movement == 'Bi':
             
             #back
             aux1, aux2 = self.state[10], self.state[18]
@@ -307,8 +307,8 @@ class cube:
         
     def scramble(self, n):
         
-        list_of_movements = np.array(["U", "U'", "D", "D'", "R", "R'", "L", "L'",
-                                      "F", "F'", "B", "B'"])
+        list_of_movements = np.array(['U', 'Ui', 'D', 'Di', 'R', 'Ri', 'L', 'Li',
+                                      'F', 'Fi', 'B', 'Bi'])
         scramble_list = []
         
         for i in range(n):
