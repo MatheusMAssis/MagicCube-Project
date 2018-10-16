@@ -1,6 +1,5 @@
 import numpy as np
 
-
 #--- auxiliar functions ---#
 
 def cube_faces(arr):
@@ -63,7 +62,17 @@ class cube3:
     def __init__(self):
         self.state = np.array([0]*9 + ([1]*3 + [2]*3 + [3]*3 + [4] * 3)*3 + [5]*9)
         self.dic   = cube_faces(self.state)
-        
+        self.color_dict = {0: 'W',
+                           1: 'O',
+                           2: 'G',
+                           3: 'R',
+                           4: 'B',
+                           5: 'Y'}
+    
+    def show(self):
+        for i in self.state:
+            ...
+    
     def move(self, movement):
         self.dic = turn_face(self.dic, movement)
         
@@ -107,7 +116,6 @@ class cube3:
         
         #clockwise
         elif movement == 'L':
-            ...
        
         #updating dic and state with the correct changes
-        self.dic, self.state = faces_to_array(self.dic, self.state)     
+        self.dic, self.state = faces_to_array(self.dic, self.state)   
