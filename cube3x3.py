@@ -86,12 +86,12 @@ class cube3:
             else:
                 down.append(color)
                 
-        print('up    :', up[:3], '\n', '      ', up[3:6], '\n', '      ', up[6:])
+        print('up    :',    up[:3], '\n', '      ',    up[3:6], '\n', '      ',    up[6:])
         print('front :', front[:3], '\n', '      ', front[3:6], '\n', '      ', front[6:])
-        print('left  :', left[:3], '\n', '      ', left[3:6], '\n', '      ', left[6:])
+        print('left  :',  left[:3], '\n', '      ',  left[3:6], '\n', '      ',  left[6:])
         print('right :', right[:3], '\n', '      ', right[3:6], '\n', '      ', right[6:])
-        print('back  :', back[:3], '\n', '      ', back[3:6], '\n', '      ', back[6:])
-        print('down  :', down[:3], '\n', '      ', down[3:6], '\n', '      ', down[6:])
+        print('back  :',  back[:3], '\n', '      ',  back[3:6], '\n', '      ',  back[6:])
+        print('down  :',  down[:3], '\n', '      ',  down[3:6], '\n', '      ',  down[6:])
                 
     
     def move(self, movement):
@@ -137,7 +137,7 @@ class cube3:
         
         #clockwise
         elif movement == 'L':
-            [aux1, aux2, aux3] = self.dic['B'][2:5]
+            [aux1, aux2, aux3]                   = self.dic['B'][2:5]
             self.dic['B'][4], self.dic['B'][2:4] = self.dic['D'][0], self.dic['D'][6:8]
             self.dic['D'][0], self.dic['D'][6:8] = self.dic['F'][0], self.dic['F'][6:8]
             self.dic['F'][0], self.dic['F'][6:8] = self.dic['U'][0], self.dic['U'][6:8]
@@ -145,7 +145,7 @@ class cube3:
         
         #counter clockwise
         elif movement == 'Li':
-            [aux1, aux2, aux3] = self.dic['F'][:1] + self.dic['F'][6:8]
+            [aux1, aux2, aux3]                   = self.dic['F'][:1] + self.dic['F'][6:8]
             self.dic['F'][0], self.dic['F'][6:8] = self.dic['D'][0], self.dic['D'][6:8]
             self.dic['D'][0], self.dic['D'][6:8] = self.dic['B'][4], self.dic['B'][2:4]
             self.dic['B'][4], self.dic['B'][2:4] = self.dic['U'][0], self.dic['U'][6:8]
@@ -155,55 +155,55 @@ class cube3:
         
         #clockwise
         elif movement == 'R':
-            [aux1, aux2, aux3] = self.dic['F'][2:5]
-            self.dic['F'][2:5] = self.dic['D'][2:5]
+            [aux1, aux2, aux3]                   = self.dic['F'][2:5]
+            self.dic['F'][2:5]                   = self.dic['D'][2:5]
             self.dic['D'][4], self.dic['D'][2:4] = self.dic['B'][0], self.dic['B'][6:8]
             self.dic['B'][0], self.dic['B'][6:8] = self.dic['U'][4], self.dic['U'][2:4]
-            self.dic['U'][2:5] = [aux1, aux2, aux3]
+            self.dic['U'][2:5]                   = [aux1, aux2, aux3]
         
         #counter clockwise
         elif movement == 'Ri':
-            [aux1, aux2, aux3] = self.dic['U'][2:5]
+            [aux1, aux2, aux3]                   = self.dic['U'][2:5]
             self.dic['U'][4], self.dic['U'][2:4] = self.dic['B'][0], self.dic['B'][6:8]
             self.dic['B'][0], self.dic['B'][6:8] = self.dic['D'][4], self.dic['D'][2:4]
-            self.dic['D'][2:5] = self.dic['F'][2:5]
-            self.dic['F'][2:5] = [aux1, aux2, aux3]
+            self.dic['D'][2:5]                   = self.dic['F'][2:5]
+            self.dic['F'][2:5]                   = [aux1, aux2, aux3]
             
         #--- front ---#
         
         #clockwise
         elif movement == 'F':
-            [aux1, aux2, aux3] = self.dic['L'][2:5]
-            self.dic['L'][2:5] = self.dic['D'][0:3]
+            [aux1, aux2, aux3]                   = self.dic['L'][2:5]
+            self.dic['L'][2:5]                   = self.dic['D'][0:3]
             self.dic['D'][2], self.dic['D'][0:2] = self.dic['R'][0], self.dic['R'][6:8]
             self.dic['R'][0], self.dic['R'][6:8] = self.dic['U'][6], self.dic['U'][4:6]
-            self.dic['U'][4:7] = [aux1, aux2, aux3]
+            self.dic['U'][4:7]                   = [aux1, aux2, aux3]
             
         #counter clockwise
         elif movement == 'Fi':
-            [aux1, aux2, aux3] = self.dic['L'][2:5]
-            self.dic['L'][2:5] = self.dic['U'][4:7]
+            [aux1, aux2, aux3]                   = self.dic['L'][2:5]
+            self.dic['L'][2:5]                   = self.dic['U'][4:7]
             self.dic['U'][6], self.dic['U'][4:6] = self.dic['R'][0], self.dic['R'][6:8]
             self.dic['R'][0], self.dic['R'][6:8] = self.dic['D'][2], self.dic['D'][0:2]
-            self.dic['D'][0:3] = [aux1, aux2, aux3]
+            self.dic['D'][0:3]                   = [aux1, aux2, aux3]
             
         #--- back ---#
         
         #clockwise
         elif movement == 'B':
-            [aux1, aux2, aux3] = self.dic['U'][0:3]
-            self.dic['U'][0:3] = self.dic['R'][2:5]
-            self.dic['R'][2:5] = self.dic['D'][4:7]
+            [aux1, aux2, aux3]                   = self.dic['U'][0:3]
+            self.dic['U'][0:3]                   = self.dic['R'][2:5]
+            self.dic['R'][2:5]                   = self.dic['D'][4:7]
             self.dic['D'][6], self.dic['D'][4:6] = self.dic['L'][0], self.dic['L'][6:8]
             self.dic['L'][0], self.dic['L'][6:8] = aux3, [aux1, aux2]
             
         #counter clockwise
         elif movement == 'Bi':
-            [aux1, aux2, aux3] = self.dic['U'][0:3]
+            [aux1, aux2, aux3]                   = self.dic['U'][0:3]
             self.dic['U'][2], self.dic['U'][0:2] = self.dic['L'][0], self.dic['L'][6:8]
             self.dic['L'][0], self.dic['L'][6:8] = self.dic['D'][6], self.dic['D'][4:6]
-            self.dic['D'][4:7] = self.dic['R'][2:5]
-            self.dic['R'][2:5] = [aux1, aux2, aux3]
+            self.dic['D'][4:7]                   = self.dic['R'][2:5]
+            self.dic['R'][2:5]                   = [aux1, aux2, aux3]
             
         #updating dic and state with the correct changes
         self.dic, self.state = faces_to_array(self.dic, self.state)
