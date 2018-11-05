@@ -1,5 +1,6 @@
 import numpy as np
 import random as rd
+from queue import PriorityQueue
 
 #--- auxiliar functions ---#
 
@@ -61,11 +62,27 @@ def change(n):
     color_dict = {0: 'W', 1: 'O', 2: 'G', 3: 'R', 4: 'B', 5: 'Y'}
     return color_dict[n]
 
+#--- auxiliar classes ---#
+    
+class my_priority_queue(PriorityQueue):
+    def __init__(self):
+        PriorityQueue.__init__(self)
+        self.counter = 0
+
+    def put(self, item, priority):
+        PriorityQueue.put(self, (priority, self.counter, item))
+        self.counter += 1
+
+    def get(self, *args, **kwargs):
+        _, _, item = PriorityQueue.get(self, *args, **kwargs)
+        return item
+
+#--- cube ---#
 
 class cube3:
     
-    def __init__(self):
-        self.state = np.array([0]*9 + ([1]*3 + [2]*3 + [3]*3 + [4] * 3)*3 + [5]*9)
+    def __init__(self, state=np.array([0]*9 + ([1]*3 + [2]*3 + [3]*3 + [4] * 3)*3 + [5]*9)):
+        self.state = state
         self.dic   = cube_faces(self.state)
     
     def show(self):
@@ -86,12 +103,12 @@ class cube3:
             else:
                 down.append(color)
                 
-        print('up    :',    up[:3], '\n', '      ',    up[3:6], '\n', '      ',    up[6:])
-        print('front :', front[:3], '\n', '      ', front[3:6], '\n', '      ', front[6:])
-        print('left  :',  left[:3], '\n', '      ',  left[3:6], '\n', '      ',  left[6:])
-        print('right :', right[:3], '\n', '      ', right[3:6], '\n', '      ', right[6:])
-        print('back  :',  back[:3], '\n', '      ',  back[3:6], '\n', '      ',  back[6:])
-        print('down  :',  down[:3], '\n', '      ',  down[3:6], '\n', '      ',  down[6:])
+        print('up   :',    up[:3], '\n', '     ',    up[3:6], '\n', '     ',    up[6:])
+        print('front:', front[:3], '\n', '     ', front[3:6], '\n', '     ', front[6:])
+        print('left :',  left[:3], '\n', '     ',  left[3:6], '\n', '     ',  left[6:])
+        print('right:', right[:3], '\n', '     ', right[3:6], '\n', '     ', right[6:])
+        print('back :',  back[:3], '\n', '     ',  back[3:6], '\n', '     ',  back[6:])
+        print('down :',  down[:3], '\n', '     ',  down[3:6], '\n', '     ',  down[6:])
                 
     
     def move(self, movement):
@@ -209,11 +226,21 @@ class cube3:
         self.dic, self.state = faces_to_array(self.dic, self.state)
     
     def scramble(self, n):
-        movement_list = ['U', 'Ui', 'D', 'Di', 'L', 'Li', 'R', 'Ri', 'F', 'Fi', 'B', 'Bi']
         scramble_list = []
-        for i in range(n):
+        movement_list = ['U', 'Ui', 'D', 'Di', 'L', 'Li', 'R', 'Ri', 'F', 'Fi', 'B', 'Bi']
+        while len(scramble_list) <= n:
             movement = rd.choice(movement_list)
             scramble_list.append(movement)
             self.move(movement)
+            if len(scramble_list) >= 2:
+                if scramble_list[-1][0] == scramble_list[-2][0]:
+                    if len(scramble_list[-1]) == len(scramble_list[-2]):
+                        new_movement = scramble_list[-1][0] + '2'
+                        [scramble_list.pop() for i in range(2)]
+                        scramble_list.append(new_movement)
+                    else:
+                        [scramble_list.pop() for i in range(2)]
         self.show()
         return scramble_list
+    
+#--- solving ---#
