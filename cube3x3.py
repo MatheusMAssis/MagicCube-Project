@@ -227,19 +227,17 @@ class cube3:
     
     def scramble(self, n):
         scramble_list = []
-        movement_list = ['U', 'Ui', 'D', 'Di', 'L', 'Li', 'R', 'Ri', 'F', 'Fi', 'B', 'Bi']
-        while len(scramble_list) <= n:
-            movement = rd.choice(movement_list)
-            scramble_list.append(movement)
-            self.move(movement)
-            if len(scramble_list) >= 2:
-                if scramble_list[-1][0] == scramble_list[-2][0]:
-                    if len(scramble_list[-1]) == len(scramble_list[-2]):
-                        new_movement = scramble_list[-1][0] + '2'
-                        [scramble_list.pop() for i in range(2)]
-                        scramble_list.append(new_movement)
-                    else:
-                        [scramble_list.pop() for i in range(2)]
+        movement_list = ['U', 'Ui', 'D', 'Di', 'L', 'Li', 'R', 'Ri', 'F', 
+                         'Fi', 'B', 'Bi', 'U2', 'D2', 'L2', 'R2', 'F2', 'B2']
+        movement = rd.choice(movement_list)
+        scramble_list.append(movement)
+        self.move(movement)
+        while len(scramble_list) < n:
+            next_movement = rd.choice(movement_list)
+            while scramble_list[-1][0] == next_movement[0]:
+                next_movement = rd.choice(movement_list)
+            scramble_list.append(next_movement)
+            self.move(next_movement)
         self.show()
         return scramble_list
     
